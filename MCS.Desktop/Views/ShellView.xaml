@@ -1,29 +1,38 @@
 <controls:MetroWindow x:Class="MCS.Desktop.Views.ShellView"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:cal="http://www.caliburnproject.org"
                       xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      xmlns:controls1="clr-namespace:MCS.Desktop.Controls"
                       xmlns:properties="clr-namespace:MCS.Desktop.Properties"
+                      xmlns:cal="http://www.caliburnproject.org"
                       Title="{x:Static properties:Resources.MultiCategoriaSearch}"
                       ShowIconOnTitleBar="True"
                       ShowTitleBar="True">
+    <controls:MetroWindow.IconTemplate>
+        <DataTemplate>
+            <Rectangle>
+                <Rectangle.Fill>
+                    <VisualBrush Visual="{StaticResource appbar_box}" />
+                </Rectangle.Fill>
+            </Rectangle>
+        </DataTemplate>
+    </controls:MetroWindow.IconTemplate>
 
     <controls:MetroWindow.RightWindowCommands>
         <controls:WindowCommands>
-            <Button Content="settings" cal:Message.Attach="ShowMessageBox" />
-            <Button>
+            <Button cal:Message.Attach="Test">
                 <StackPanel Orientation="Horizontal">
                     <Rectangle Width="20"
                                Height="20"
                                Fill="{Binding RelativeSource={RelativeSource AncestorType=Button},
                                               Path=Foreground}">
                         <Rectangle.OpacityMask>
-                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_cupcake}" />
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_settings}" />
                         </Rectangle.OpacityMask>
                     </Rectangle>
                     <TextBlock Margin="4 0 0 0"
                                VerticalAlignment="Center"
-                               Text="deploy cupcakes" />
+                               Text="{x:Static properties:Resources.Settings}" />
                 </StackPanel>
             </Button>
         </controls:WindowCommands>
@@ -34,6 +43,12 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Vertical">
+            <controls1:RangeSlider Margin="{StaticResource DefaulThickness}"
+                                   Maximum="100"
+                                   Minimum="0" />
+        </StackPanel>
 
         <GroupBox Grid.Column="1"
                   Margin="{StaticResource DefaulThickness}"

@@ -117,10 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="AddPoint" xml:space="preserve">
+    <value>Добавить точку</value>
+  </data>
+  <data name="Calculate" xml:space="preserve">
+    <value>Рассчитать</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="Criteria" xml:space="preserve">
+    <value>Критерий</value>
+  </data>
   <data name="MultiCategoriaSearch" xml:space="preserve">
     <value>Многокритериальный поиск</value>
   </data>
+  <data name="Ok" xml:space="preserve">
+    <value>ОК</value>
+  </data>
+  <data name="Points" xml:space="preserve">
+    <value>Точки</value>
+  </data>
   <data name="Results" xml:space="preserve">
     <value>Результаты</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Настройки</value>
   </data>
 </root>
