@@ -7,7 +7,7 @@ using System.Windows.Threading;
 
 namespace MCS.Desktop.Executers
 {
-    public class Executer : IUiInvoker
+    public class Executer : IExecuter
     {
         public Executer()
         {
@@ -16,51 +16,49 @@ namespace MCS.Desktop.Executers
             dispatcher = Application.Current.Dispatcher;
         }
 
-        public static Task<TResult> ExecuteAsync<TResult>(Func<IUiInvoker, TResult> action)
+        public Task<TResult> ExecuteAsync<TResult>(Func<IExecuter, TResult> action)
         {
             Contract.Requires(action != null);
 
-            var invoker = DefaultInvoker;
-
-            return Task.Run(() => action(invoker));
+            return Task.Run(() => action(this));
         }
 
-        public static IUiInvoker QueueAction(Action<IUiInvoker> action)
+        public void QueueAction(Action<IExecuter> action)
         {
-            return QueueAction(action, () => { });
+            QueueAction(action, () => { });
         }
 
-        public static IUiInvoker QueueAction(Action<IUiInvoker> action, Action completedAction)
-        {
-            var invoker = DefaultInvoker;
-
-            ThreadPool.QueueUserWorkItem(state =>
-                                         {
-                                             action(invoker);
-                                             invoker.SendToUi(completedAction);
-                                         });
-
-            return invoker;
-        }
-
-        public static IUiInvoker QueueAction<TResult>(Func<IUiInvoker, TResult> action)
-        {
-            return QueueAction(action, result => { });
-        }
-
-        public static IUiInvoker QueueAction<TResult>(Func<IUiInvoker, TResult> action, Action<TResult> completedAction)
+        public void QueueAction(Action<IExecuter> action, Action completedAction)
         {
             Contract.Requires(action != null);
             Contract.Requires(completedAction != null);
 
-            var invoker = DefaultInvoker;
+            IsRunning = true;
             ThreadPool.QueueUserWorkItem(state =>
                                          {
-                                             var result = action(invoker);
-                                             invoker.SendToUi(() => completedAction(result));
+                                             action(this);
+                                             SendToUi(completedAction);
+                                             IsRunning = false;
                                          });
+        }
 
-            return invoker;
+        public void QueueAction<TResult>(Func<IExecuter, TResult> action)
+        {
+            QueueAction(action, result => { });
+        }
+
+        public void QueueAction<TResult>(Func<IExecuter, TResult> action, Action<TResult> completedAction)
+        {
+            Contract.Requires(action != null);
+            Contract.Requires(completedAction != null);
+
+            IsRunning = true;
+            ThreadPool.QueueUserWorkItem(state =>
+                                         {
+                                             var result = action(this);
+                                             SendToUi(() => completedAction(result));
+                                             IsRunning = false;
+                                         });
         }
 
         public void SendToUi(Action action)
@@ -74,7 +72,10 @@ namespace MCS.Desktop.Executers
         public void Cancel()
         {
             isCancelled = true;
+            IsRunning = false;
         }
+
+        public event EventHandler<IsRunningChangedEventArgs> IsRunningChanged = (sender, args) => { };
 
         public bool IsCancelled
         {
@@ -84,15 +85,22 @@ namespace MCS.Desktop.Executers
             }
         }
 
-        private static IUiInvoker DefaultInvoker
+        public bool IsRunning
         {
             get
             {
-                return new Executer();
+                return isRunning;
+            }
+
+            private set
+            {
+                isRunning = value;
+                IsRunningChanged.Invoke(this, new IsRunningChangedEventArgs(isRunning));
             }
         }
 
         private readonly Dispatcher dispatcher;
         private bool isCancelled;
+        private bool isRunning;
     }
 }

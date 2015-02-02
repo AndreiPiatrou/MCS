@@ -1,3 +1,4 @@
+using MCS.Desktop.Executers;
 using MCS.Desktop.ViewModels;
 
 namespace MCS.Desktop {
@@ -18,6 +19,7 @@ namespace MCS.Desktop {
             container.Singleton<IWindowManager, WindowManager>();
             container.Singleton<IEventAggregator, EventAggregator>();
             container.PerRequest<IShell, ShellViewModel>();
+            container.PerRequest<IExecuter, Executer>();
         }
 
         protected override object GetInstance(Type service, string key) {

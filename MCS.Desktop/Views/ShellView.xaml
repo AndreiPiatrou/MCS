@@ -1,10 +1,11 @@
 <controls:MetroWindow x:Class="MCS.Desktop.Views.ShellView"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:behaviors="clr-namespace:MCS.Desktop.Behaviors"
+                      xmlns:cal="http://www.caliburnproject.org"
                       xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
                       xmlns:controls1="clr-namespace:MCS.Desktop.Controls"
                       xmlns:properties="clr-namespace:MCS.Desktop.Properties"
-                      xmlns:cal="http://www.caliburnproject.org"
                       Title="{x:Static properties:Resources.MultiCategoriaSearch}"
                       ShowIconOnTitleBar="True"
                       ShowTitleBar="True">
@@ -38,8 +39,9 @@
         </controls:WindowCommands>
     </controls:MetroWindow.RightWindowCommands>
 
-    <Grid>
+    <Grid behaviors:InteractionLayout.ActionInProgress="{Binding InProcess}">
         <Grid.ColumnDefinitions>
+            <ColumnDefinition />
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
@@ -50,7 +52,7 @@
                                    Minimum="0" />
         </StackPanel>
 
-        <GroupBox Grid.Column="1"
+        <GroupBox Grid.Column="2"
                   Margin="{StaticResource DefaulThickness}"
                   Header="{x:Static properties:Resources.Results}" />
     </Grid>
