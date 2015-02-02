@@ -1,3 +1,5 @@
+using MCS.Desktop.ViewModels;
+
 namespace MCS.Desktop {
     using System;
     using System.Collections.Generic;

@@ -4,6 +4,14 @@ namespace MCS.Desktop.ViewModels
 {
     public class Criteria: PropertyChangedBase
     {
+        public Criteria(string name, double currentValue, double maxValue, double minValue)
+        {
+            this.name = name;
+            this.currentValue = currentValue;
+            this.maxValue = maxValue;
+            this.minValue = minValue;
+        }
+
         public string Name
         {
             get

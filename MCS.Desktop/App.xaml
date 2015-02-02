@@ -5,6 +5,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Defaults.xaml" />
                 <ResourceDictionary>
                     <desktop:AppBootstrapper x:Key="Bootstrapper" />
                 </ResourceDictionary>

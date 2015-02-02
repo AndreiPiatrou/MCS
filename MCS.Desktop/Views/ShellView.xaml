@@ -1,0 +1,16 @@
+<Window x:Class="MCS.Desktop.Views.ShellView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:properties="clr-namespace:MCS.Desktop.Properties">
+
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <GroupBox Grid.Column="1"
+                  Margin="{StaticResource DefaulThickness}"
+                  Header="{x:Static properties:Resources.Results}" />
+    </Grid>
+
+</Window>
