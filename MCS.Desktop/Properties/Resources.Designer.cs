@@ -61,6 +61,15 @@ namespace MCS.Desktop.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Многокритериальный поиск.
+        /// </summary>
+        public static string MultiCategoriaSearch {
+            get {
+                return ResourceManager.GetString("MultiCategoriaSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Результаты.
         /// </summary>
         public static string Results {
