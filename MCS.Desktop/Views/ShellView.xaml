@@ -10,6 +10,7 @@
                       Title="{x:Static properties:Resources.MultiCategoriaSearch}"
                       Width="1100"
                       Height="600"
+                      Icon="../images.ico"
                       ShowIconOnTitleBar="True"
                       ShowTitleBar="True"
                       WindowStartupLocation="CenterScreen"
