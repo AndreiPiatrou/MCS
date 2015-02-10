@@ -132,8 +132,26 @@
   <data name="Close" xml:space="preserve">
     <value>Закрыть</value>
   </data>
+  <data name="ConvertFilteredResultsToSettings" xml:space="preserve">
+    <value>Вставить как новые настройки</value>
+  </data>
   <data name="Criteria" xml:space="preserve">
     <value>Критерий</value>
+  </data>
+  <data name="Criterias" xml:space="preserve">
+    <value>Критерии</value>
+  </data>
+  <data name="FirstParameterMaxValue" xml:space="preserve">
+    <value>Максимум 1-го параметра</value>
+  </data>
+  <data name="FirstParameterMinValue" xml:space="preserve">
+    <value>Минимум 1-го параметра</value>
+  </data>
+  <data name="FourthParameterMaxValue" xml:space="preserve">
+    <value>Максимум 4-го параметра</value>
+  </data>
+  <data name="FourthParameterMinValue" xml:space="preserve">
+    <value>Минимум 4-го параметра</value>
   </data>
   <data name="MultiCategoriaSearch" xml:space="preserve">
     <value>Многокритериальный поиск</value>
@@ -144,13 +162,28 @@
   <data name="Points" xml:space="preserve">
     <value>Точки</value>
   </data>
+  <data name="PointsCount" xml:space="preserve">
+    <value>Количество точек</value>
+  </data>
   <data name="Results" xml:space="preserve">
     <value>Результаты</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Сохранить</value>
   </data>
+  <data name="SecondParametedMinValue" xml:space="preserve">
+    <value>Минимум 2-го параметра</value>
+  </data>
+  <data name="SecondParameterMaxValue" xml:space="preserve">
+    <value>Максимум 2-го параметра</value>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>Настройки</value>
+  </data>
+  <data name="ThirdParameterMaxValue" xml:space="preserve">
+    <value>Максимум 3-го параметра</value>
+  </data>
+  <data name="ThirdParameterMinValue" xml:space="preserve">
+    <value>Минимум 3-го параметра</value>
   </data>
 </root>

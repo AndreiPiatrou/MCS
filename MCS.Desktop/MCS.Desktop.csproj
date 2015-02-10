@@ -47,6 +47,15 @@
     <Reference Include="MahApps.Metro">
       <HintPath>..\packages\MahApps.Metro.1.0.0.0\lib\net45\MahApps.Metro.dll</HintPath>
     </Reference>
+    <Reference Include="OxyPlot">
+      <HintPath>..\packages\OxyPlot.Core.2014.1.546\lib\portable-net4+sl4+wp71+win8\OxyPlot.dll</HintPath>
+    </Reference>
+    <Reference Include="OxyPlot.Wpf">
+      <HintPath>..\packages\OxyPlot.Wpf.2014.1.546\lib\net45\OxyPlot.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="OxyPlot.Xps">
+      <HintPath>..\packages\OxyPlot.Wpf.2014.1.546\lib\net45\OxyPlot.Xps.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -71,17 +80,35 @@
     </ApplicationDefinition>
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="Behaviors\InteractionLayout.cs" />
+    <Compile Include="Controls\CriteriaRange.xaml.cs">
+      <DependentUpon>CriteriaRange.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\RangeSlider.xaml.cs">
       <DependentUpon>RangeSlider.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SearchSettingsControl.xaml.cs">
+      <DependentUpon>SearchSettingsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Executers\IExecuter.cs" />
     <Compile Include="Executers\Executer.cs" />
     <Compile Include="Executers\IsRunningChangedEventArgs.cs" />
+    <Compile Include="Services\ParametersSetGeneratorService.cs" />
+    <Compile Include="DataModels\DataChangedEventArgs.cs" />
+    <Compile Include="ViewModels\CriteriaSearchSettings.cs" />
     <Compile Include="ViewModels\IShell.cs" />
+    <Compile Include="DataModels\ParametersSet.cs" />
+    <Compile Include="ViewModels\PointInfo.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\Criteria.cs" />
-    <Compile Include="ViewModels\JobSeeker.cs" />
+    <Page Include="Controls\CriteriaRange.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\RangeSlider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SearchSettingsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -131,9 +158,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\WindowsIcons-license.txt" />
   </ItemGroup>

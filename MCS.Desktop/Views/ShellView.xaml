@@ -6,9 +6,14 @@
                       xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
                       xmlns:controls1="clr-namespace:MCS.Desktop.Controls"
                       xmlns:properties="clr-namespace:MCS.Desktop.Properties"
+                      xmlns:viewModels="clr-namespace:MCS.Desktop.ViewModels"
                       Title="{x:Static properties:Resources.MultiCategoriaSearch}"
+                      Width="1100"
+                      Height="600"
                       ShowIconOnTitleBar="True"
-                      ShowTitleBar="True">
+                      ShowTitleBar="True"
+                      WindowStartupLocation="CenterScreen"
+                      WindowState="Maximized">
     <controls:MetroWindow.IconTemplate>
         <DataTemplate>
             <Rectangle>
@@ -41,20 +46,70 @@
 
     <Grid behaviors:InteractionLayout.ActionInProgress="{Binding InProcess}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
-
-        <StackPanel Orientation="Vertical">
-            <controls1:RangeSlider Margin="{StaticResource DefaulThickness}"
-                                   Maximum="100"
-                                   Minimum="0" />
-        </StackPanel>
-
-        <GroupBox Grid.Column="2"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <GroupBox Header="{x:Static properties:Resources.Settings}">
+            <StackPanel Orientation="Vertical">
+                <controls1:SearchSettingsControl Settings="{Binding Settings}" />
+                <Button x:Name="GenerateSearch"
+                        Margin="{StaticResource DefaulThickness}"
+                        Background="{StaticResource AccentColorBrush}"
+                        Content="{x:Static properties:Resources.Calculate}" />
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Grid.Row="0"
+                  Grid.Column="1"
                   Margin="{StaticResource DefaulThickness}"
-                  Header="{x:Static properties:Resources.Results}" />
+                  Header="{x:Static properties:Resources.Criterias}">
+            <ItemsControl ItemsSource="{Binding Criterias}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="viewModels:Criteria">
+                        <controls1:CriteriaRange Title="{Binding Name}"
+                                                 Margin="-5,0"
+                                                 Items="{Binding PointValues}"
+                                                 LowerValue="{Binding MinValue,
+                                                                      Mode=TwoWay}"
+                                                 UpperValue="{Binding MaxValue,
+                                                                      Mode=TwoWay}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </GroupBox>
+
+
+        <GroupBox Grid.Row="0"
+                  Grid.Column="2"
+                  Margin="{StaticResource DefaulThickness}"
+                  Header="{x:Static properties:Resources.Results}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <ListView ItemsSource="{Binding FilteredPoints}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="70" DisplayMemberBinding="{Binding PoinIndex}" Header="index" />
+                            <GridViewColumn Width="70" Header="p1"  DisplayMemberBinding="{Binding ParametersSet.Parameter1}" />
+                            <GridViewColumn Width="70" Header="p2" DisplayMemberBinding="{Binding ParametersSet.Parameter2}"/>
+                            <GridViewColumn Width="70" Header="p3" DisplayMemberBinding="{Binding ParametersSet.Parameter3}"/>
+                            <GridViewColumn Width="70" Header="p4" DisplayMemberBinding="{Binding ParametersSet.Parameter4}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+                <Button x:Name="ConvertFilteredResultsToSettings"
+                        Grid.Row="1"
+                        Content="{x:Static properties:Resources.ConvertFilteredResultsToSettings}" />
+            </Grid>
+        </GroupBox>
+
     </Grid>
 
 </controls:MetroWindow>

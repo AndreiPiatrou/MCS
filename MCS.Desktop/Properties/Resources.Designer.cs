@@ -106,11 +106,65 @@ namespace MCS.Desktop.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Вставить как новые настройки.
+        /// </summary>
+        public static string ConvertFilteredResultsToSettings {
+            get {
+                return ResourceManager.GetString("ConvertFilteredResultsToSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Критерий.
         /// </summary>
         public static string Criteria {
             get {
                 return ResourceManager.GetString("Criteria", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Критерии.
+        /// </summary>
+        public static string Criterias {
+            get {
+                return ResourceManager.GetString("Criterias", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Максимум 1-го параметра.
+        /// </summary>
+        public static string FirstParameterMaxValue {
+            get {
+                return ResourceManager.GetString("FirstParameterMaxValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Минимум 1-го параметра.
+        /// </summary>
+        public static string FirstParameterMinValue {
+            get {
+                return ResourceManager.GetString("FirstParameterMinValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Максимум 4-го параметра.
+        /// </summary>
+        public static string FourthParameterMaxValue {
+            get {
+                return ResourceManager.GetString("FourthParameterMaxValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Минимум 4-го параметра.
+        /// </summary>
+        public static string FourthParameterMinValue {
+            get {
+                return ResourceManager.GetString("FourthParameterMinValue", resourceCulture);
             }
         }
         
@@ -142,6 +196,15 @@ namespace MCS.Desktop.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Количество точек.
+        /// </summary>
+        public static string PointsCount {
+            get {
+                return ResourceManager.GetString("PointsCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Результаты.
         /// </summary>
         public static string Results {
@@ -160,11 +223,47 @@ namespace MCS.Desktop.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Минимум 2-го параметра.
+        /// </summary>
+        public static string SecondParametedMinValue {
+            get {
+                return ResourceManager.GetString("SecondParametedMinValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Максимум 2-го параметра.
+        /// </summary>
+        public static string SecondParameterMaxValue {
+            get {
+                return ResourceManager.GetString("SecondParameterMaxValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Настройки.
         /// </summary>
         public static string Settings {
             get {
                 return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Максимум 3-го параметра.
+        /// </summary>
+        public static string ThirdParameterMaxValue {
+            get {
+                return ResourceManager.GetString("ThirdParameterMaxValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Минимум 3-го параметра.
+        /// </summary>
+        public static string ThirdParameterMinValue {
+            get {
+                return ResourceManager.GetString("ThirdParameterMinValue", resourceCulture);
             }
         }
     }
