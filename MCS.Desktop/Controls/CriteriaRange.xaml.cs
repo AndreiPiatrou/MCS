@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Windows;
-using System.Windows.Data;
 using System.Windows.Input;
 
 using Caliburn.Micro;
@@ -131,7 +130,6 @@ namespace MCS.Desktop.Controls
             }
         }
 
-
         private void SubscribeOnChange(ObservableCollection<double> value)
         {
             value.CollectionChanged += ItemsOnCollectionChanged;
@@ -157,7 +155,6 @@ namespace MCS.Desktop.Controls
             }
 
             var pointsList = new List<Point>();
-
             var minimum = enumerable.Min();
             var maximum = enumerable.Max();
             var totalDelta = maximum - minimum;
@@ -199,6 +196,9 @@ namespace MCS.Desktop.Controls
                 MarkerFill = OxyColors.SkyBlue,
                 MarkerStrokeThickness = 1,
                 Smooth = true,
+                TrackerFormatString = "Функция критерия:      {0}\n" +
+                                      "X(значение критерия):{2}\n" +
+                                      "Y(кол-во точек):           {4}"
             };
 
             foreach (var point in pointsList)
@@ -228,7 +228,6 @@ namespace MCS.Desktop.Controls
             {
                 be.UpdateSource();
             }
-
         }
     }
 }

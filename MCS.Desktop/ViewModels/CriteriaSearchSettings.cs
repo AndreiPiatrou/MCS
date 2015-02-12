@@ -44,18 +44,179 @@ namespace MCS.Desktop.ViewModels
                 }
                 pointsCount = value;
                 NotifyOfPropertyChange(() => PointsCount);
+                NotifyOfPropertyChange(() => IsValid);
             }
         }
 
-        public double Parameter1Min { get; set; }
-        public double Parameter2Min { get; set; }
-        public double Parameter3Min { get; set; }
-        public double Parameter4Min { get; set; }
-        public double Parameter1Max { get; set; }
-        public double Parameter2Max { get; set; }
-        public double Parameter3Max { get; set; }
-        public double Parameter4Max { get; set; }
+        public double Parameter1Min
+        {
+            get
+            {
+                return parameter1Min;
+            }
+            set
+            {
+                if (value.Equals(parameter1Min))
+                {
+                    return;
+                }
+                parameter1Min = value;
+                NotifyOfPropertyChange(() => Parameter1Min);
+                NotifyOfPropertyChange(() => IsValid);
+            }
+        }
+
+        public double Parameter2Min
+        {
+            get
+            {
+                return parameter2Min;
+            }
+            set
+            {
+                if (value.Equals(parameter2Min))
+                {
+                    return;
+                }
+                parameter2Min = value;
+                NotifyOfPropertyChange(() => Parameter2Min);
+                NotifyOfPropertyChange(() => IsValid);
+            }
+        }
+
+        public double Parameter3Min
+        {
+            get
+            {
+                return parameter3Min;
+            }
+            set
+            {
+                if (value.Equals(parameter3Min))
+                {
+                    return;
+                }
+                parameter3Min = value;
+                NotifyOfPropertyChange(() => Parameter3Min);
+                NotifyOfPropertyChange(() => IsValid);
+            }
+        }
+
+        public double Parameter4Min
+        {
+            get
+            {
+                return parameter4Min;
+            }
+            set
+            {
+                if (value.Equals(parameter4Min))
+                {
+                    return;
+                }
+                parameter4Min = value;
+                NotifyOfPropertyChange(() => Parameter4Min);
+                NotifyOfPropertyChange(() => IsValid);
+            }
+        }
+
+        public double Parameter1Max
+        {
+            get
+            {
+                return parameter1Max;
+            }
+            set
+            {
+                if (value.Equals(parameter1Max))
+                {
+                    return;
+                }
+                parameter1Max = value;
+                NotifyOfPropertyChange(() => Parameter1Max);
+                NotifyOfPropertyChange(() => IsValid);
+            }
+        }
+
+        public double Parameter2Max
+        {
+            get
+            {
+                return parameter2Max;
+            }
+            set
+            {
+                if (value.Equals(parameter2Max))
+                {
+                    return;
+                }
+                parameter2Max = value;
+                NotifyOfPropertyChange(() => Parameter2Max);
+                NotifyOfPropertyChange(() => IsValid);
+            }
+        }
+
+        public double Parameter3Max
+        {
+            get
+            {
+                return parameter3Max;
+            }
+            set
+            {
+                if (value.Equals(parameter3Max))
+                {
+                    return;
+                }
+                parameter3Max = value;
+                NotifyOfPropertyChange(() => Parameter3Max);
+                NotifyOfPropertyChange(() => IsValid);
+            }
+        }
+
+        public double Parameter4Max
+        {
+            get
+            {
+                return parameter4Max;
+            }
+            set
+            {
+                if (value.Equals(parameter4Max))
+                {
+                    return;
+                }
+                parameter4Max = value;
+                NotifyOfPropertyChange(() => Parameter4Max);
+                NotifyOfPropertyChange(() => IsValid);
+            }
+        }
+
+        public bool IsValid
+        {
+            get
+            {
+                return RangeIsValid(Parameter1Min, Parameter1Max) &&
+                       RangeIsValid(Parameter2Min, Parameter2Max) &&
+                       RangeIsValid(Parameter3Min, Parameter3Max) &&
+                       RangeIsValid(Parameter4Min, Parameter4Max) &&
+                       PointsCount > 0;
+            }
+        }
+
+        private bool RangeIsValid(double minValue, double maxValue)
+        {
+            return minValue < maxValue;
+        }
 
         private int pointsCount;
+        private double parameter1Min;
+        private double parameter2Min;
+        private double parameter3Min;
+        private double parameter4Min;
+        private double parameter1Max;
+        private double parameter2Max;
+        private double parameter3Max;
+        private double parameter4Max;
     }
 }

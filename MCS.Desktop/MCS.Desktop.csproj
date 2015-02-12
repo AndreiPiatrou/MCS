@@ -95,6 +95,7 @@
     <Compile Include="Controls\SearchSettingsControl.xaml.cs">
       <DependentUpon>SearchSettingsControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\BooleanToBrushConverter.cs" />
     <Compile Include="Executers\IExecuter.cs" />
     <Compile Include="Executers\Executer.cs" />
     <Compile Include="Executers\IsRunningChangedEventArgs.cs" />

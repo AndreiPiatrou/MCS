@@ -57,11 +57,21 @@
         </Grid.RowDefinitions>
         <GroupBox Header="{x:Static properties:Resources.Settings}">
             <StackPanel Orientation="Vertical">
-                <controls1:SearchSettingsControl Settings="{Binding Settings}" />
+                <controls1:SearchSettingsControl x:Name="SearchSettingsControl" Settings="{Binding Settings}" />
                 <Button x:Name="GenerateSearch"
                         Margin="{StaticResource DefaulThickness}"
                         Background="{StaticResource AccentColorBrush}"
-                        Content="{x:Static properties:Resources.Calculate}" />
+                        IsEnabled="{Binding ElementName=SearchSettingsControl,
+                                            Path=Settings.IsValid}">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle Width="15" Height="15">
+                            <Rectangle.Fill>
+                                <VisualBrush Visual="{StaticResource appbar_calculator}" />
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Margin="5,0,0,0" Text="{x:Static properties:Resources.Calculate}" />
+                    </StackPanel>
+                </Button>
             </StackPanel>
         </GroupBox>
         <GroupBox Grid.Row="0"
@@ -71,13 +81,15 @@
             <ItemsControl ItemsSource="{Binding Criterias}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="viewModels:Criteria">
-                        <controls1:CriteriaRange Title="{Binding Name}"
-                                                 Margin="-5,0"
-                                                 Items="{Binding PointValues}"
-                                                 LowerValue="{Binding MinValue,
-                                                                      Mode=TwoWay}"
-                                                 UpperValue="{Binding MaxValue,
-                                                                      Mode=TwoWay}" />
+                        <Border BorderBrush="Black" BorderThickness="0,2,0,0">
+                            <controls1:CriteriaRange Title="{Binding Name}"
+                                                     Margin="-5,0"
+                                                     Items="{Binding PointValues}"
+                                                     LowerValue="{Binding MinValue,
+                                                                          Mode=TwoWay}"
+                                                     UpperValue="{Binding MaxValue,
+                                                                          Mode=TwoWay}" />
+                        </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
@@ -96,11 +108,21 @@
                 <ListView ItemsSource="{Binding FilteredPoints}">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Width="70" DisplayMemberBinding="{Binding PoinIndex}" Header="index" />
-                            <GridViewColumn Width="70" Header="p1"  DisplayMemberBinding="{Binding ParametersSet.Parameter1}" />
-                            <GridViewColumn Width="70" Header="p2" DisplayMemberBinding="{Binding ParametersSet.Parameter2}"/>
-                            <GridViewColumn Width="70" Header="p3" DisplayMemberBinding="{Binding ParametersSet.Parameter3}"/>
-                            <GridViewColumn Width="70" Header="p4" DisplayMemberBinding="{Binding ParametersSet.Parameter4}"/>
+                            <GridViewColumn Width="70"
+                                            DisplayMemberBinding="{Binding PoinIndex}"
+                                            Header="index" />
+                            <GridViewColumn Width="70"
+                                            DisplayMemberBinding="{Binding ParametersSet.Parameter1}"
+                                            Header="p1" />
+                            <GridViewColumn Width="70"
+                                            DisplayMemberBinding="{Binding ParametersSet.Parameter2}"
+                                            Header="p2" />
+                            <GridViewColumn Width="70"
+                                            DisplayMemberBinding="{Binding ParametersSet.Parameter3}"
+                                            Header="p3" />
+                            <GridViewColumn Width="70"
+                                            DisplayMemberBinding="{Binding ParametersSet.Parameter4}"
+                                            Header="p4" />
                         </GridView>
                     </ListView.View>
                 </ListView>

@@ -1,6 +1,7 @@
 ﻿<Application x:Class="MCS.Desktop.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="clr-namespace:MCS.Desktop.Converters"
              xmlns:desktop="clr-namespace:MCS.Desktop">
     <Application.Resources>
         <ResourceDictionary>
@@ -17,6 +18,10 @@
 
                 <ResourceDictionary>
                     <desktop:AppBootstrapper x:Key="Bootstrapper" />
+                    <converters:BooleanToBrushConverter x:Key="IsValidToBorderBrushConverter"
+                                                        FalseValueBrush="Red"
+                                                        TrueValueBrush="Transparent" />
+
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

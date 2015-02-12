@@ -79,7 +79,7 @@ namespace MCS.Desktop.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Рассчитать.
+        ///   Looks up a localized string similar to РАССЧИТАТЬ.
         /// </summary>
         public static string Calculate {
             get {
@@ -129,6 +129,15 @@ namespace MCS.Desktop.Properties {
         public static string Criterias {
             get {
                 return ResourceManager.GetString("Criterias", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Значение критерия.
+        /// </summary>
+        public static string CriteriaValue {
+            get {
+                return ResourceManager.GetString("CriteriaValue", resourceCulture);
             }
         }
         

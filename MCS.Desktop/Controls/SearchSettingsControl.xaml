@@ -9,106 +9,108 @@
              d:DesignHeight="300"
              d:DesignWidth="300"
              mc:Ignorable="d">
-    <Grid DataContext="{Binding ElementName=Root, Path=Settings}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Grid.Resources>
-            <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="TextBlock">
-                <Setter Property="VerticalAlignment" Value="Center" />
-                <Setter Property="Margin" Value="{StaticResource DefaulThickness}" />
-            </Style>
-            <Style BasedOn="{StaticResource {x:Type controls:NumericUpDown}}" TargetType="controls:NumericUpDown">
-                <Setter Property="Margin" Value="{StaticResource DefaulThickness}" />
-                <Setter Property="Width" Value="100" />
-            </Style>
-        </Grid.Resources>
+    <Border BorderBrush="{Binding ElementName=Root, Path=Settings.IsValid, Converter={StaticResource IsValidToBorderBrushConverter}}" BorderThickness="2">
+        <Grid DataContext="{Binding ElementName=Root, Path=Settings}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.Resources>
+                <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="TextBlock">
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="Margin" Value="{StaticResource DefaulThickness}" />
+                </Style>
+                <Style BasedOn="{StaticResource {x:Type controls:NumericUpDown}}" TargetType="controls:NumericUpDown">
+                    <Setter Property="Margin" Value="{StaticResource DefaulThickness}" />
+                    <Setter Property="Width" Value="100" />
+                </Style>
+            </Grid.Resources>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
-        <TextBlock Text="{x:Static properties:Resources.PointsCount}" />
-        <controls:NumericUpDown Grid.Row="0"
-                                Grid.Column="1"
-                                Maximum="10000"
-                                Minimum="1"
-                                Value="{Binding PointsCount}" />
-        <TextBlock Grid.Row="1"
-                   Grid.Column="0"
-                   Text="{x:Static properties:Resources.FirstParameterMinValue}" />
-        <controls:NumericUpDown Grid.Row="1"
-                                Grid.Column="1"
-                                Maximum="10000"
-                                Minimum="1"
-                                Value="{Binding Parameter1Min}" />
-        <TextBlock Grid.Row="2"
-                   Grid.Column="0"
-                   Text="{x:Static properties:Resources.FirstParameterMaxValue}" />
-        <controls:NumericUpDown Grid.Row="2"
-                                Grid.Column="1"
-                                Maximum="10000"
-                                Minimum="1"
-                                Value="{Binding Parameter1Max}" />
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{x:Static properties:Resources.PointsCount}" />
+            <controls:NumericUpDown Grid.Row="0"
+                                    Grid.Column="1"
+                                    Maximum="10000"
+                                    Minimum="1"
+                                    Value="{Binding PointsCount}" />
+            <TextBlock Grid.Row="1"
+                       Grid.Column="0"
+                       Text="{x:Static properties:Resources.FirstParameterMinValue}" />
+            <controls:NumericUpDown Grid.Row="1"
+                                    Grid.Column="1"
+                                    Maximum="10000"
+                                    Minimum="1"
+                                    Value="{Binding Parameter1Min}" />
+            <TextBlock Grid.Row="2"
+                       Grid.Column="0"
+                       Text="{x:Static properties:Resources.FirstParameterMaxValue}" />
+            <controls:NumericUpDown Grid.Row="2"
+                                    Grid.Column="1"
+                                    Maximum="10000"
+                                    Minimum="1"
+                                    Value="{Binding Parameter1Max}" />
 
-        <TextBlock Grid.Row="3"
-                   Grid.Column="0"
-                   Text="{x:Static properties:Resources.SecondParametedMinValue}" />
-        <controls:NumericUpDown Grid.Row="3"
-                                Grid.Column="1"
-                                Maximum="10000"
-                                Minimum="1"
-                                Value="{Binding Parameter2Min}" />
-        <TextBlock Grid.Row="4"
-                   Grid.Column="0"
-                   Text="{x:Static properties:Resources.SecondParameterMaxValue}" />
-        <controls:NumericUpDown Grid.Row="4"
-                                Grid.Column="1"
-                                Maximum="10000"
-                                Minimum="1"
-                                Value="{Binding Parameter2Max}" />
-        <TextBlock Grid.Row="5"
-                   Grid.Column="0"
-                   Text="{x:Static properties:Resources.ThirdParameterMinValue}" />
-        <controls:NumericUpDown Grid.Row="5"
-                                Grid.Column="1"
-                                Maximum="10000"
-                                Minimum="1"
-                                Value="{Binding Parameter3Min}" />
-        <TextBlock Grid.Row="6"
-                   Grid.Column="0"
-                   Text="{x:Static properties:Resources.ThirdParameterMaxValue}" />
-        <controls:NumericUpDown Grid.Row="6"
-                                Grid.Column="1"
-                                Maximum="10000"
-                                Minimum="1"
-                                Value="{Binding Parameter3Max}" />
-        <TextBlock Grid.Row="7"
-                   Grid.Column="0"
-                   Text="{x:Static properties:Resources.FourthParameterMinValue}" />
-        <controls:NumericUpDown Grid.Row="7"
-                                Grid.Column="1"
-                                Maximum="10000"
-                                Minimum="1"
-                                Value="{Binding Parameter4Min}" />
-        <TextBlock Grid.Row="8"
-                   Grid.Column="0"
-                   Text="{x:Static properties:Resources.FourthParameterMaxValue}" />
-        <controls:NumericUpDown Grid.Row="8"
-                                Grid.Column="1"
-                                Maximum="10000"
-                                Minimum="1"
-                                Value="{Binding Parameter4Max}" />
+            <TextBlock Grid.Row="3"
+                       Grid.Column="0"
+                       Text="{x:Static properties:Resources.SecondParametedMinValue}" />
+            <controls:NumericUpDown Grid.Row="3"
+                                    Grid.Column="1"
+                                    Maximum="10000"
+                                    Minimum="1"
+                                    Value="{Binding Parameter2Min}" />
+            <TextBlock Grid.Row="4"
+                       Grid.Column="0"
+                       Text="{x:Static properties:Resources.SecondParameterMaxValue}" />
+            <controls:NumericUpDown Grid.Row="4"
+                                    Grid.Column="1"
+                                    Maximum="10000"
+                                    Minimum="1"
+                                    Value="{Binding Parameter2Max}" />
+            <TextBlock Grid.Row="5"
+                       Grid.Column="0"
+                       Text="{x:Static properties:Resources.ThirdParameterMinValue}" />
+            <controls:NumericUpDown Grid.Row="5"
+                                    Grid.Column="1"
+                                    Maximum="10000"
+                                    Minimum="1"
+                                    Value="{Binding Parameter3Min}" />
+            <TextBlock Grid.Row="6"
+                       Grid.Column="0"
+                       Text="{x:Static properties:Resources.ThirdParameterMaxValue}" />
+            <controls:NumericUpDown Grid.Row="6"
+                                    Grid.Column="1"
+                                    Maximum="10000"
+                                    Minimum="1"
+                                    Value="{Binding Parameter3Max}" />
+            <TextBlock Grid.Row="7"
+                       Grid.Column="0"
+                       Text="{x:Static properties:Resources.FourthParameterMinValue}" />
+            <controls:NumericUpDown Grid.Row="7"
+                                    Grid.Column="1"
+                                    Maximum="10000"
+                                    Minimum="1"
+                                    Value="{Binding Parameter4Min}" />
+            <TextBlock Grid.Row="8"
+                       Grid.Column="0"
+                       Text="{x:Static properties:Resources.FourthParameterMaxValue}" />
+            <controls:NumericUpDown Grid.Row="8"
+                                    Grid.Column="1"
+                                    Maximum="10000"
+                                    Minimum="1"
+                                    Value="{Binding Parameter4Max}" />
 
-    </Grid>
+        </Grid>
+    </Border>
 </UserControl>
