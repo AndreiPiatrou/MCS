@@ -11,10 +11,36 @@ namespace MCS.Desktop.Services
     {
         public ParametersSet GenerateParametersSet(CriteriaSearchSettings settings)
         {
-            return new ParametersSet(random.NextDouble() * settings.Parameter1Max + settings.Parameter1Min,
-                random.NextDouble() * settings.Parameter2Max + settings.Parameter2Min,
-                random.NextDouble() * settings.Parameter3Max + settings.Parameter3Min,
-                random.NextDouble() * settings.Parameter4Max + settings.Parameter4Min);
+            if (settings.Method == GenerationMethod.SimpleRandom)
+            {
+                return new ParametersSet(SimpleRandom(settings.Parameter1Min, settings.Parameter1Max),
+                    SimpleRandom(settings.Parameter2Min, settings.Parameter2Max),
+                    SimpleRandom(settings.Parameter3Min, settings.Parameter3Max),
+                    SimpleRandom(settings.Parameter4Min, settings.Parameter4Max));
+            }
+
+            return
+                new ParametersSet(
+                    GenerateByMonteCarlo(settings.Parameter1Min,
+                        settings.Parameter1Max,
+                        settings.AdditionalParameter1,
+                        settings.AdditionalParameter2,
+                        settings.MeasureChange),
+                    GenerateByMonteCarlo(settings.Parameter2Min,
+                        settings.Parameter2Max,
+                        settings.AdditionalParameter1,
+                        settings.AdditionalParameter2,
+                        settings.MeasureChange),
+                    GenerateByMonteCarlo(settings.Parameter3Min,
+                        settings.Parameter3Max,
+                        settings.AdditionalParameter1,
+                        settings.AdditionalParameter2,
+                        settings.MeasureChange),
+                    GenerateByMonteCarlo(settings.Parameter4Min,
+                        settings.Parameter4Max,
+                        settings.AdditionalParameter1,
+                        settings.AdditionalParameter2,
+                        settings.MeasureChange));
         }
 
         public CriteriaSearchSettings PointsInfoToSettings(IEnumerable<PointInfo> pointInfos,
@@ -35,7 +61,35 @@ namespace MCS.Desktop.Services
             result.Parameter4Min = enumerable.Min(p => p.ParametersSet.Parameter4);
             result.Parameter4Max = enumerable.Max(p => p.ParametersSet.Parameter4);
 
+            result.AdditionalParameter1 = oldSettings.AdditionalParameter1;
+            result.AdditionalParameter2 = oldSettings.AdditionalParameter2;
+            result.MeasureChange = oldSettings.MeasureChange;
+            result.Method = oldSettings.Method;
+
             return result;
+        }
+
+        private double SimpleRandom(double minValue, double maxValue)
+        {
+            return random.NextDouble() * (maxValue - minValue) + minValue;
+        }
+
+        private double GenerateByMonteCarlo(
+            double minValue,
+            double maxValue,
+            double leftMeasure,
+            double rightMeasure,
+            double measureChance)
+        {
+            var inMeasures = false;
+            if (measureChance > 0d)
+            {
+                inMeasures = random.Next() % (1.0 / measureChance) < measureChance;
+            }
+
+            return inMeasures
+                ? SimpleRandom(minValue + (maxValue - minValue) * leftMeasure, minValue + (maxValue - minValue) * rightMeasure)
+                : SimpleRandom(minValue, maxValue);
         }
 
         private readonly Random random = new Random();

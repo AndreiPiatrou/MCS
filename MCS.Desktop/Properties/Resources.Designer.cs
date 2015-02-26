@@ -178,6 +178,24 @@ namespace MCS.Desktop.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Вероятность в границах.
+        /// </summary>
+        public static string MeasureChance {
+            get {
+                return ResourceManager.GetString("MeasureChance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Границы распределения.
+        /// </summary>
+        public static string Measures {
+            get {
+                return ResourceManager.GetString("Measures", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Многокритериальный поиск.
         /// </summary>
         public static string MultiCategoriaSearch {
@@ -192,6 +210,15 @@ namespace MCS.Desktop.Properties {
         public static string Ok {
             get {
                 return ResourceManager.GetString("Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Номер точки.
+        /// </summary>
+        public static string PointIndex {
+            get {
+                return ResourceManager.GetString("PointIndex", resourceCulture);
             }
         }
         
@@ -273,6 +300,15 @@ namespace MCS.Desktop.Properties {
         public static string ThirdParameterMinValue {
             get {
                 return ResourceManager.GetString("ThirdParameterMinValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Использовать метод Монте-Карло.
+        /// </summary>
+        public static string UseMonteCarloMethod {
+            get {
+                return ResourceManager.GetString("UseMonteCarloMethod", resourceCulture);
             }
         }
     }

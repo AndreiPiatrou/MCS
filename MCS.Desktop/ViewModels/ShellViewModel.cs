@@ -24,7 +24,13 @@ namespace MCS.Desktop.ViewModels
             this.parametersSetGenerator = parametersSetGenerator;
 
             this.executer.IsRunningChanged += (s, e) => InProcess = e.IsRunning;
-            Settings = new CriteriaSearchSettings(100, 1, 10, 5, 1, 100, 20, 400, 30);
+            Settings = new CriteriaSearchSettings(100, 1, 10, 5, 1, 100, 20, 400, 30)
+            {
+                Method = GenerationMethod.MonteCarlo,
+                AdditionalParameter1 = 0,
+                AdditionalParameter2 = 0.5,
+                MeasureChange = 0.7
+            };
             Criterias = new ObservableCollection<Criteria>(FillCriterias());
         }
 

@@ -189,4 +189,16 @@
   <data name="ThirdParameterMinValue" xml:space="preserve">
     <value>Минимум 3-го параметра</value>
   </data>
+  <data name="MeasureChance" xml:space="preserve">
+    <value>Вероятность в границах</value>
+  </data>
+  <data name="Measures" xml:space="preserve">
+    <value>Границы распределения</value>
+  </data>
+  <data name="UseMonteCarloMethod" xml:space="preserve">
+    <value>Использовать метод Монте-Карло</value>
+  </data>
+  <data name="PointIndex" xml:space="preserve">
+    <value>Номер точки</value>
+  </data>
 </root>

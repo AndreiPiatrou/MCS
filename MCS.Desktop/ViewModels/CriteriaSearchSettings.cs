@@ -28,6 +28,25 @@ namespace MCS.Desktop.ViewModels
         public CriteriaSearchSettings(int pointsCount)
         {
             this.pointsCount = pointsCount;
+            Method = GenerationMethod.SimpleRandom;
+        }
+
+        public GenerationMethod Method
+        {
+            get
+            {
+                return method;
+            }
+            set
+            {
+                if (method == value)
+                {
+                    return;
+                }
+
+                method = value;
+                UseMonteCarlo = method == GenerationMethod.MonteCarlo;
+            }
         }
 
         public int PointsCount
@@ -204,6 +223,76 @@ namespace MCS.Desktop.ViewModels
             }
         }
 
+        public double AdditionalParameter1
+        {
+            get
+            {
+                return additionalParameter1;
+            }
+            set
+            {
+                if (value.Equals(additionalParameter1))
+                {
+                    return;
+                }
+                additionalParameter1 = value;
+                NotifyOfPropertyChange(() => AdditionalParameter1);
+            }
+        }
+
+        public double AdditionalParameter2
+        {
+            get
+            {
+                return additionalParameter2;
+            }
+            set
+            {
+                if (value.Equals(additionalParameter2))
+                {
+                    return;
+                }
+                additionalParameter2 = value;
+                NotifyOfPropertyChange(() => AdditionalParameter2);
+            }
+        }
+
+        public double MeasureChange
+        {
+            get
+            {
+                return measureChange;
+            }
+            set
+            {
+                if (value.Equals(measureChange))
+                {
+                    return;
+                }
+                measureChange = value;
+                NotifyOfPropertyChange(() => MeasureChange);
+            }
+        }
+
+        public bool UseMonteCarlo
+        {
+            get
+            {
+                return useMonteCarlo;
+            }
+            set
+            {
+                if (value.Equals(useMonteCarlo))
+                {
+                    return;
+                }
+
+                Method = value ? GenerationMethod.MonteCarlo : GenerationMethod.SimpleRandom;
+                useMonteCarlo = value;
+                NotifyOfPropertyChange(() => UseMonteCarlo);
+            }
+        }
+
         private bool RangeIsValid(double minValue, double maxValue)
         {
             return minValue < maxValue;
@@ -218,5 +307,10 @@ namespace MCS.Desktop.ViewModels
         private double parameter2Max;
         private double parameter3Max;
         private double parameter4Max;
+        private double additionalParameter1;
+        private double additionalParameter2;
+        private bool useMonteCarlo;
+        private GenerationMethod method;
+        private double measureChange;
     }
 }

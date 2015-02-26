@@ -6,12 +6,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:properties="clr-namespace:MCS.Desktop.Properties"
              x:Name="Root"
-             d:DesignHeight="300"
+             d:DesignHeight="500"
              d:DesignWidth="300"
              mc:Ignorable="d">
     <Border BorderBrush="{Binding ElementName=Root, Path=Settings.IsValid, Converter={StaticResource IsValidToBorderBrushConverter}}" BorderThickness="2">
         <Grid DataContext="{Binding ElementName=Root, Path=Settings}">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -110,6 +113,43 @@
                                     Maximum="10000"
                                     Minimum="1"
                                     Value="{Binding Parameter4Max}" />
+            <CheckBox Grid.Row="9"
+                      Grid.Column="0"
+                      Grid.ColumnSpan="2"
+                      Margin="{StaticResource DefaulThickness}"
+                      IsChecked="{Binding UseMonteCarlo,
+                                          Mode=TwoWay}">
+                <TextBlock Text="{x:Static properties:Resources.UseMonteCarloMethod}" />
+            </CheckBox>
+
+            <TextBlock Grid.Row="10"
+                       Grid.Column="0"
+                       Text="{x:Static properties:Resources.MeasureChance}" />
+            <controls:NumericUpDown Grid.Row="10"
+                                    Grid.Column="1"
+                                    Interval="0.1"
+                                    IsEnabled="{Binding UseMonteCarlo}"
+                                    Maximum="1"
+                                    Minimum="0"
+                                    Value="{Binding MeasureChange}" />
+
+            <TextBlock Grid.Row="11"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="2"
+                       Text="{x:Static properties:Resources.Measures}" />
+            <controls:RangeSlider Grid.Row="12"
+                                  Grid.Column="0"
+                                  Grid.ColumnSpan="2"
+                                  Margin="{StaticResource DefaulThickness}"
+                                  AutoToolTipPlacement="TopLeft"
+                                  AutoToolTipPrecision="2"
+                                  IsEnabled="{Binding UseMonteCarlo}"
+                                  IsMoveToPointEnabled="True"
+                                  LowerValue="{Binding AdditionalParameter1}"
+                                  Maximum="1"
+                                  MinRange="0.1"
+                                  Minimum="0"
+                                  UpperValue="{Binding AdditionalParameter2}" />
 
         </Grid>
     </Border>

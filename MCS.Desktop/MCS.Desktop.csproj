@@ -102,6 +102,7 @@
     <Compile Include="Services\ParametersSetGeneratorService.cs" />
     <Compile Include="DataModels\DataChangedEventArgs.cs" />
     <Compile Include="ViewModels\CriteriaSearchSettings.cs" />
+    <Compile Include="ViewModels\GenerationMethod.cs" />
     <Compile Include="ViewModels\IShell.cs" />
     <Compile Include="DataModels\ParametersSet.cs" />
     <Compile Include="ViewModels\PointInfo.cs" />

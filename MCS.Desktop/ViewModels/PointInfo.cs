@@ -19,5 +19,13 @@ namespace MCS.Desktop.ViewModels
         public double Value { get; set; }
 
         public int PoinIndex { get; set; }
+
+        public int PointIndexOnView
+        {
+            get
+            {
+                return PoinIndex + 1;
+            }
+        }
     }
 }
