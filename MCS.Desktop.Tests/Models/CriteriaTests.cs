@@ -4,35 +4,42 @@ using System.Linq;
 using MCS.Desktop.DataModels;
 using MCS.Desktop.ViewModels;
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace MCS.Desktop.Tests.Models
 {
-    [TestClass]
+    [TestFixture]
     public class CriteriaTests
     {
-        private Criteria criteria;
-        private List<ParametersSet> points;
-
-        [TestMethod]
+        [Test]
         public void CalculateCriteriaByParametersSet_CalculateFunctionTest_Positive()
         {
+            var criteria = CreateCriteria();
+            var points = CreateParametersSets();
+
             var result = points.First().Parameter1 + points.First().Parameter2 + 
                          points.First().Parameter3 + points.First().Parameter4;
+
             Assert.AreEqual(criteria.CalculateCriteriaByParametersSet(points).First().Value, result);
         }
 
-        [TestMethod]
+        [Test]
         public void CalculateCriteriaByParametersSet_CalculateFunctionTest_Negative()
         {
+            var criteria = CreateCriteria();
+            var points = CreateParametersSets();
+
             Assert.AreNotEqual(criteria.CalculateCriteriaByParametersSet(points).First().Value, 0);
         }
 
-        [TestInitialize]
-        public void Setup()
+        private Criteria CreateCriteria()
         {
-            criteria = new Criteria("TestCriteria", set => set.Parameter1 + set.Parameter2 + set.Parameter3 + set.Parameter4);
-            points = new List<ParametersSet> 
+            return new Criteria("TestCriteria", set => set.Parameter1 + set.Parameter2 + set.Parameter3 + set.Parameter4);
+        }
+
+        private List<ParametersSet> CreateParametersSets()
+        {
+            return new List<ParametersSet> 
                             {
                                 new ParametersSet(1, 1, 1, 1)
                             };

@@ -1,74 +1,85 @@
 ﻿using MCS.Desktop.ViewModels;
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace MCS.Desktop.Tests.Models
 {
-    [TestClass]
+    [TestFixture]
     public class CriteriaSearchSettingsTests
     {
-        private CriteriaSearchSettings settings;
-
-        [TestMethod]
+        [Test]
         public void IsValid_InvalidPointsCount()
         {
+            var settings = CreateSettings();
+
             settings.PointsCount = 0;
 
             Assert.IsFalse(settings.IsValid);
         }
 
-        [TestMethod]
+        [Test]
         public void IsValid_InvalidBounds_InvalidParameter1Bounds()
         {
+            var settings = CreateSettings();
+
             settings.Parameter1Max = settings.Parameter1Min;
 
             Assert.IsFalse(settings.IsValid);
         }
 
-        [TestMethod]
+        [Test]
         public void IsValid_InvalidBounds_InvalidParameter2Bounds()
         {
+            var settings = CreateSettings();
+
             settings.Parameter2Max = settings.Parameter2Min;
 
             Assert.IsFalse(settings.IsValid);
         }
 
-        [TestMethod]
+        [Test]
         public void IsValid_InvalidBounds_InvalidParameter3Bounds()
         {
+            var settings = CreateSettings();
+
             settings.Parameter3Max = settings.Parameter3Min;
 
             Assert.IsFalse(settings.IsValid);
         }
 
-        [TestMethod]
+        [Test]
         public void IsValid_InvalidBounds_InvalidParameter4Bounds()
         {
+            var settings = CreateSettings();
+
             settings.Parameter4Max = settings.Parameter4Min;
 
             Assert.IsFalse(settings.IsValid);
         }
 
-        [TestMethod]
+        [Test]
         public void UseMonteCarlo_IsFalse()
         {
+            var settings = CreateSettings();
+
             settings.Method = GenerationMethod.SimpleRandom;
 
             Assert.IsFalse(settings.UseMonteCarlo);
         }
 
-        [TestMethod]
+        [Test]
         public void UseMonteCarlo_IsTrue()
         {
+            var settings = CreateSettings();
+
             settings.Method = GenerationMethod.MonteCarlo;
 
             Assert.IsTrue(settings.UseMonteCarlo);
         }
 
-        [TestInitialize]
-        public void Setup()
+        private static CriteriaSearchSettings CreateSettings()
         {
-            settings = new CriteriaSearchSettings(10)
+            return new CriteriaSearchSettings(10)
             {
                 Parameter1Min = 0,
                 Parameter1Max = 10,

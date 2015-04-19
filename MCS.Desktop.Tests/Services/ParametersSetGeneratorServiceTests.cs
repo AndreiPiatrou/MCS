@@ -1,19 +1,21 @@
 ﻿using MCS.Desktop.Services;
 using MCS.Desktop.ViewModels;
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace MCS.Desktop.Tests.Services
 {
-    [TestClass]
+    [TestFixture]
     public class ParametersSetGeneratorServiceTests
     {
-        private ParametersSetGeneratorService service;
-        private CriteriaSearchSettings settings;
-
-        [TestMethod]
-        public void GenerateParametersSet_SimpleRandom_Bounds_PositiveCase()
+        [TestCase(GenerationMethod.SimpleRandom)]
+        [TestCase(GenerationMethod.MonteCarlo)]
+        public void GenerateParametersSet_SimpleRandom_AreInBounds(GenerationMethod method)
         {
+            var settings = CreateSettings();
+            var service = CreateService();
+
+            settings.Method = method;
             var parameter = service.GenerateParametersSet(settings);
 
             Assert.IsTrue(AreInBounds(parameter.Parameter1, settings.Parameter1Min, settings.Parameter1Max));
@@ -22,23 +24,14 @@ namespace MCS.Desktop.Tests.Services
             Assert.IsTrue(AreInBounds(parameter.Parameter4, settings.Parameter4Min, settings.Parameter4Max));
         }
 
-        [TestMethod]
-        public void GenerateParametersSet_MonteCarlo_Bounds_PositiveCase()
+        private ParametersSetGeneratorService CreateService()
         {
-            settings.Method = GenerationMethod.MonteCarlo;
-            var parameter = service.GenerateParametersSet(settings);
-
-            Assert.IsTrue(AreInBounds(parameter.Parameter1, settings.Parameter1Min, settings.Parameter1Max));
-            Assert.IsTrue(AreInBounds(parameter.Parameter2, settings.Parameter2Min, settings.Parameter2Max));
-            Assert.IsTrue(AreInBounds(parameter.Parameter3, settings.Parameter3Min, settings.Parameter3Max));
-            Assert.IsTrue(AreInBounds(parameter.Parameter4, settings.Parameter4Min, settings.Parameter4Max));
+            return new ParametersSetGeneratorService();
         }
-        
-        [TestInitialize]
-        public void Setup()
+
+        private CriteriaSearchSettings CreateSettings()
         {
-            service = new ParametersSetGeneratorService();
-            settings = new CriteriaSearchSettings(10)
+            return new CriteriaSearchSettings(10)
             {
                 Parameter1Min = 0,
                 Parameter1Max = 10,
