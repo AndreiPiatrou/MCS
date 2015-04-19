@@ -61,6 +61,7 @@ namespace MCS.Desktop.ViewModels
                 {
                     return;
                 }
+
                 pointsCount = value;
                 NotifyOfPropertyChange(() => PointsCount);
                 NotifyOfPropertyChange(() => IsValid);
