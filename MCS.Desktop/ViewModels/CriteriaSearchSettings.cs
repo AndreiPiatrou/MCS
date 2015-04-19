@@ -79,6 +79,7 @@ namespace MCS.Desktop.ViewModels
                 {
                     return;
                 }
+
                 parameter1Min = value;
                 NotifyOfPropertyChange(() => Parameter1Min);
                 NotifyOfPropertyChange(() => IsValid);
@@ -97,6 +98,7 @@ namespace MCS.Desktop.ViewModels
                 {
                     return;
                 }
+
                 parameter2Min = value;
                 NotifyOfPropertyChange(() => Parameter2Min);
                 NotifyOfPropertyChange(() => IsValid);
@@ -115,6 +117,7 @@ namespace MCS.Desktop.ViewModels
                 {
                     return;
                 }
+
                 parameter3Min = value;
                 NotifyOfPropertyChange(() => Parameter3Min);
                 NotifyOfPropertyChange(() => IsValid);
@@ -133,6 +136,7 @@ namespace MCS.Desktop.ViewModels
                 {
                     return;
                 }
+
                 parameter4Min = value;
                 NotifyOfPropertyChange(() => Parameter4Min);
                 NotifyOfPropertyChange(() => IsValid);
@@ -151,6 +155,7 @@ namespace MCS.Desktop.ViewModels
                 {
                     return;
                 }
+
                 parameter1Max = value;
                 NotifyOfPropertyChange(() => Parameter1Max);
                 NotifyOfPropertyChange(() => IsValid);
@@ -169,6 +174,7 @@ namespace MCS.Desktop.ViewModels
                 {
                     return;
                 }
+
                 parameter2Max = value;
                 NotifyOfPropertyChange(() => Parameter2Max);
                 NotifyOfPropertyChange(() => IsValid);
@@ -187,6 +193,7 @@ namespace MCS.Desktop.ViewModels
                 {
                     return;
                 }
+
                 parameter3Max = value;
                 NotifyOfPropertyChange(() => Parameter3Max);
                 NotifyOfPropertyChange(() => IsValid);
@@ -205,6 +212,7 @@ namespace MCS.Desktop.ViewModels
                 {
                     return;
                 }
+
                 parameter4Max = value;
                 NotifyOfPropertyChange(() => Parameter4Max);
                 NotifyOfPropertyChange(() => IsValid);
