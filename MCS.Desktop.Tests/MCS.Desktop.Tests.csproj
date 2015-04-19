@@ -55,7 +55,7 @@
   <ItemGroup>
     <Compile Include="Services\ParametersSetGeneratorServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\CriteriaSearchSettingsTests.cs" />
+    <Compile Include="Models\CriteriaSearchSettingsTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MCS.Desktop\MCS.Desktop.csproj">

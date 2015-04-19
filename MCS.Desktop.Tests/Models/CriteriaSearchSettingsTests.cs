@@ -2,7 +2,7 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace MCS.Desktop.Tests.Services
+namespace MCS.Desktop.Tests.Models
 {
     [TestClass]
     public class CriteriaSearchSettingsTests
