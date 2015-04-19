@@ -10,6 +10,12 @@ namespace MCS.Desktop.ViewModels
             ParametersSet = parametersSet;
         }
 
+        public PointInfo(double value, double param1, double param2, double param3, double param4)
+        {
+            Value = value;
+            ParametersSet = new ParametersSet(param1, param2, param3, param4);
+        }
+
         public ParametersSet ParametersSet
         {
             get;

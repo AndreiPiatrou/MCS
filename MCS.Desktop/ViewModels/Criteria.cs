@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics.Contracts;
 using System.Linq;
+using System.Reactive.Subjects;
 
 using Caliburn.Micro;
 
@@ -37,6 +38,11 @@ namespace MCS.Desktop.ViewModels
 
             return Points;
         }
+
+        public PointInfo CalculateMinPointByWeigths(CriteriaSearchSettings settings)
+        {
+            throw new NotImplementedException();
+        } 
 
         public IList<PointInfo> Points
         {
@@ -80,9 +86,8 @@ namespace MCS.Desktop.ViewModels
                 return new ObservableCollection<double>(points == null ? new List<double>() : points.Select(p => p.Value));
             }
         }
-
-        public event EventHandler<DataChangedEventArgs<IEnumerable<PointInfo>>> FilteredPointsChanged =
-            (s, e) => { };
+        
+        public Subject<IEnumerable<PointInfo>> FilteredPointsSubject = new Subject<IEnumerable<PointInfo>>();
 
         public string Name
         {
@@ -143,7 +148,7 @@ namespace MCS.Desktop.ViewModels
 
         private void InvokeFIlteredPointsWereChanged()
         {
-            FilteredPointsChanged(this, new DataChangedEventArgs<IEnumerable<PointInfo>>(FilteredPoints.ToList()));
+            FilteredPointsSubject.OnNext(FilteredPoints.ToList());
         }
 
         private readonly Func<ParametersSet, double> calculationFunc;

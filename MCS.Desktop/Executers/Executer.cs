@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
+using System.Reactive.Subjects;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,6 +15,7 @@ namespace MCS.Desktop.Executers
             Contract.Ensures(dispatcher != null);
 
             dispatcher = Application.Current.Dispatcher;
+            IsRunningChangedSubject = new Subject<bool>();
         }
 
         public Task<TResult> ExecuteAsync<TResult>(Func<IExecuter, TResult> action)
@@ -75,8 +77,8 @@ namespace MCS.Desktop.Executers
             IsRunning = false;
         }
 
-        public event EventHandler<IsRunningChangedEventArgs> IsRunningChanged = (sender, args) => { };
-
+        public ISubject<bool> IsRunningChangedSubject { get; private set; }
+        
         public bool IsCancelled
         {
             get
@@ -95,7 +97,7 @@ namespace MCS.Desktop.Executers
             private set
             {
                 isRunning = value;
-                IsRunningChanged.Invoke(this, new IsRunningChangedEventArgs(isRunning));
+                IsRunningChangedSubject.OnNext(isRunning);
             }
         }
 

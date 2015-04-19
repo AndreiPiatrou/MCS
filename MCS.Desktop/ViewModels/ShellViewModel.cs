@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reactive.Linq;
+using System.Reactive.Subjects;
 
 using Caliburn.Micro;
 
@@ -23,7 +25,17 @@ namespace MCS.Desktop.ViewModels
             this.executer = executer;
             this.parametersSetGenerator = parametersSetGenerator;
 
-            this.executer.IsRunningChanged += (s, e) => InProcess = e.IsRunning;
+            generateSearchSubject = new Subject<IEnumerable<ParametersSet>>();
+            generateSearchSubject.Subscribe(sets =>
+            {
+                var parametersSets = sets as ParametersSet[] ?? sets.ToArray();
+                foreach (var criteria in Criterias)
+                {
+                    criteria.CalculateCriteriaByParametersSet(parametersSets);
+                }
+            });
+
+            this.executer.IsRunningChangedSubject.Subscribe(b => InProcess = b);
             Settings = new CriteriaSearchSettings(100, 1, 10, 5, 1, 100, 20, 400, 30)
             {
                 Method = GenerationMethod.MonteCarlo,
@@ -36,15 +48,7 @@ namespace MCS.Desktop.ViewModels
 
         public void GenerateSearch()
         {
-            executer.QueueAction<IEnumerable<ParametersSet>>(e => GenerateParametersSet().ToList(),
-                sets =>
-                {
-                    var parametersSets = sets as ParametersSet[] ?? sets.ToArray();
-                    foreach (var criteria in Criterias)
-                    {
-                        criteria.CalculateCriteriaByParametersSet(parametersSets);
-                    }
-                });
+            generateSearchSubject.OnNext(GenerateParametersSet());
         }
 
         public IEnumerable<ParametersSet> GenerateParametersSet()
@@ -146,13 +150,8 @@ namespace MCS.Desktop.ViewModels
         {
             foreach (var criteria in newCriterias)
             {
-                criteria.FilteredPointsChanged += CriteriaOnFilteredPointsChanged;
+                criteria.FilteredPointsSubject.Subscribe(UpdateFilteredPointsAsynch);
             }
-        }
-
-        private void CriteriaOnFilteredPointsChanged(object sender, DataChangedEventArgs<IEnumerable<PointInfo>> e)
-        {
-            UpdateFilteredPointsAsynch(e.Data.ToList());
         }
 
         private void UpdateFilteredPointsAsynch(IEnumerable<PointInfo> points)
@@ -173,6 +172,7 @@ namespace MCS.Desktop.ViewModels
         private readonly IEventAggregator eventAggregator;
         private readonly IExecuter executer;
         private readonly ParametersSetGeneratorService parametersSetGenerator;
+        private readonly ISubject<IEnumerable<ParametersSet>> generateSearchSubject;
         private bool inProcess;
         private int pointsCount;
         private ObservableCollection<Criteria> criterias;

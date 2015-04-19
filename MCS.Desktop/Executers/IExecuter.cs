@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reactive.Subjects;
 using System.Threading.Tasks;
 
 namespace MCS.Desktop.Executers
@@ -18,8 +19,8 @@ namespace MCS.Desktop.Executers
         void SendToUi(Action action);
 
         void Cancel();
-
-        event EventHandler<IsRunningChangedEventArgs> IsRunningChanged;
+        
+        ISubject<bool> IsRunningChangedSubject { get; } 
 
         bool IsCancelled { get; }
 
